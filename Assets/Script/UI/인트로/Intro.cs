@@ -45,12 +45,14 @@ public class Intro : MonoBehaviour
             }
 
             // 현재 텍스트를 전체 텍스트에 추가
-            fullText += strings[t] + "\n";
+            //fullText += strings[t] + "\n";
 
-            yield return new WaitForSeconds(1f);
+            fullText = "";
+
+            yield return new WaitForSeconds(2f);
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         Continue();
 
