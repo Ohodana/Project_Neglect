@@ -26,7 +26,7 @@ public class TouchToContinue : MonoBehaviour
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             // 씬 전환
-            SceneManager.LoadScene(nextSceneName);
+            SceneTransitionManager.ChangeScene(nextSceneName);
         }
         else
         {
