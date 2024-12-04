@@ -69,7 +69,7 @@ public class SceneTransitionManager : MonoBehaviour
 
         // 씬 변경
         Debug.Log("Changing scene to!! : " + sceneName);
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
 
         // 페이드 인
         elapsedTime = 0f;

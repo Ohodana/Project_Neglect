@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - Pet
+  - Char
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
     locked: 0
   - name: Char
     uniqueID: 1344383237
+    locked: 0
+  - name: Pet_Front
+    uniqueID: 3513740815
     locked: 0

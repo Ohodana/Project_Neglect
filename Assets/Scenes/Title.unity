@@ -411,9 +411,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1499,6 +1499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1787230406}
   - component: {fileID: 1787230407}
+  - component: {fileID: 1787230408}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -1514,12 +1515,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787230405}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7648117418509605903}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1787230407
 AudioSource:
@@ -1528,7 +1529,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787230405}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6601776909569727547, guid: 01a3e85204f5e5543a418da6c86a3843, type: 2}
   m_audioClip: {fileID: 8300000, guid: 3591ff3381b557a44b0d37a8ebd22beb, type: 3}
@@ -1617,6 +1618,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1787230408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787230405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d878564387e0784da6d514836c0700d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1852014260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,7 +2488,6 @@ Transform:
   - {fileID: 355473448}
   - {fileID: 951165677}
   - {fileID: 836818441}
-  - {fileID: 1787230406}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7648117418509605904
@@ -2549,5 +2561,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 899697552}
+  - {fileID: 1787230406}
   - {fileID: 7648117418509605903}
   - {fileID: 1392347587}

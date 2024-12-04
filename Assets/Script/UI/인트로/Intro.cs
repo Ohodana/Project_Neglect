@@ -12,6 +12,19 @@ public class Intro : MonoBehaviour
     [SerializeField]
     private string nextSceneName;
 
+    [Header("Audio Settings")]
+    [SerializeField]
+    private AudioSource typingAudioSource; // 타이핑 소리 AudioSource
+    [SerializeField]
+    private float minPitch = 0.8f; // 최소 피치
+    [SerializeField]
+    private float maxPitch = 1.2f; // 최대 피치
+
+    private bool isSkipping = false; // 스킵 중인지 여부를 확인하는 플래그
+    private bool canTyping = true; // 타이핑 중인지 여부를 확인하는 플래그
+    [SerializeField]
+    private float typingSoundCooldown = 0.1f; // 타이핑 속도
+
     private void OnEnable()
     {
         SceneTransitionManager.OnFadeInComplete += StartTypingText;
@@ -27,7 +40,33 @@ public class Intro : MonoBehaviour
         StartCoroutine(TypingText());
     }
 
-    public IEnumerator TypingText()
+    private void Update()
+    {
+        if (isSkipping == false)
+        {
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                Skip();
+                Debug.Log("Skip3");
+            }
+
+            if (Application.isEditor && Input.GetMouseButtonDown(0))
+            {
+                Skip();
+                Debug.Log("Skip4");
+            }
+        }
+    }
+
+    private void Skip()
+    {
+        Debug.Log("true");
+        isSkipping = true; // 스킵 시작
+        StopAllCoroutines();
+        Continue();
+    }
+
+    private IEnumerator TypingText()
     {
         string[] strings = new string[3] {
             "기타누락자\n신의 변덕 또는 기적으로 죽어야 할 사람이 살았을때 그 사람을 일컫는 말.",
@@ -45,6 +84,9 @@ public class Intro : MonoBehaviour
 
                 // 기존 텍스트와 새 텍스트를 결합
                 TargetText.text = fullText + newText;
+
+                //타이핑 소리 재생
+                PlayTypingSound();
 
                 // 텍스트 크기에 따라 RectTransform 높이 조정
                 AdjustTextHeight();
@@ -78,5 +120,25 @@ public class Intro : MonoBehaviour
         {
             Debug.Log("Next scene not set!");
         }
+    }
+
+    private void PlayTypingSound()
+    {
+        if (typingAudioSource != null && typingAudioSource.clip != null && canTyping)
+        {
+            typingAudioSource.pitch = Random.Range(minPitch, maxPitch);
+
+            // 타이핑 소리 재생
+            typingAudioSource.PlayOneShot(typingAudioSource.clip);
+
+            StartCoroutine(TypeingSoundCooldown(typingSoundCooldown));
+        }
+    }
+
+    private IEnumerator TypeingSoundCooldown(float coolDown)
+    {
+        canTyping = false;
+        yield return new WaitForSeconds(coolDown);
+        canTyping = true;
     }
 }
