@@ -56,7 +56,11 @@ public class GameCurrency
     public void AddActs(int amount)
     {
         Acts += amount;
-        Debug.Log($"Acts added: {amount}. Current Acts: {Acts}");
+        if (Acts > maxActs)
+        {
+            Acts = maxActs;
+            Debug.Log($"Acts set to maxActs: {maxActs}");
+        }
     }
 
     public bool SpendActs(int amount)

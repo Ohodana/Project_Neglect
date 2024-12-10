@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     public DataManager DataManager => dataManager; // Getter 제공
 
+    [SerializeField]
+    private int increasedActsTime = 5;
+
     [Header("Managers")]
     [SerializeField]
     private UIManager uiManager;
@@ -29,6 +32,17 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         InitializeManagers();
+    }
+
+    void Start()
+    {
+        InvokeRepeating("IncreaseActionPoints", increasedActsTime, increasedActsTime);
+    }
+
+    void IncreaseActionPoints()
+    {
+        dataManager.AddActs(1);
+        Debug.Log("Action Points increased by 1.");
     }
 
     private void InitializeManagers()

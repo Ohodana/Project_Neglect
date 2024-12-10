@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         InitializeUI();
+
+        GameManager.Instance.DataManager.OnCurrencyChanged += UpdateCurrencyUI;
     }
 
     private void InitializeUI()
@@ -69,8 +71,9 @@ public class UIManager : MonoBehaviour
 
     private void testActs()
     {
-        GameManager.Instance.DataManager.CurrentCurrency.SpendActs(1);
-        UpdateCurrencyUI();
+        // GameManager.Instance.DataManager.CurrentCurrency.SpendActs(1);
+        // UpdateCurrencyUI();
+        GameManager.Instance.DataManager.SpendActs(1);
     }
 
 }

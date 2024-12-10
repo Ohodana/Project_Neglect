@@ -6,6 +6,7 @@ public class TouchToContinue : MonoBehaviour
     [SerializeField]
     private string nextSceneName;
     private bool isSceneChanging = false;
+
     void Update()
     {
         if (isSceneChanging == false)

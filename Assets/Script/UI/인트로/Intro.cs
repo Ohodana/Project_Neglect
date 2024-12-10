@@ -28,11 +28,15 @@ public class Intro : MonoBehaviour
     private void OnEnable()
     {
         SceneTransitionManager.OnFadeInComplete += StartTypingText;
+
+        AudioManager.Instance.Pause("Main_BGM");
     }
 
     private void OnDisable()
     {
         SceneTransitionManager.OnFadeInComplete -= StartTypingText;
+
+        AudioManager.Instance.UnPause("Main_BGM");
     }
 
     private void StartTypingText()
