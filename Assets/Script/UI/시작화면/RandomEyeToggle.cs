@@ -17,11 +17,18 @@ public class RandomEyeToggle : MonoBehaviour
     private float minClosedTime = 0.1f;   // 눈 감은 상태 최소 유지 시간
     private float maxClosedTime = 0.3f;   // 눈 감은 상태 최대 유지 시간
 
-    private void Start()
+    private void OnEnable()
     {
         // 눈 깜빡임 동작 시작
         StartCoroutine(Blink());
     }
+
+    private void OnDisable()
+    {
+        // 눈 깜빡임 동작 중지
+        StopCoroutine(Blink());
+    }
+
 
     private System.Collections.IEnumerator Blink()
     {

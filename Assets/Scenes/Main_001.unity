@@ -2056,7 +2056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc08e116b58e07442b2da6bff264953f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  increasedActsTime: 1
+  increasedActsTime: 2
   uiManager: {fileID: 663134963}
 --- !u!4 &632531742
 Transform:

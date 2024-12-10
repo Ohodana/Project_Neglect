@@ -56,4 +56,18 @@ public class GameManager : MonoBehaviour
         dataManager = new DataManager(saveManager);
 
     }
+
+
+    private void OnApplicationQuit()
+    {
+        dataManager.SaveCurrency();
+    }
+
+    // 혹은 씬 이동 시나 게임 종료 시에 호출하는 별도의 함수:
+    private void OnDestroy()
+    {
+        // Hierarchy 상에서 GameManager가 파괴된다면 저장
+        // 단, OnDestroy는 종료 직전에 불리지 않을 수도 있으므로 OnApplicationQuit와 함께 쓰거나 상황에 맞게 사용
+        dataManager.SaveCurrency();
+    }
 }
