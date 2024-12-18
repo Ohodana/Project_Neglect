@@ -9,9 +9,10 @@ public class SceneTransitionManager : MonoBehaviour
     [SerializeField] private Image fadeImage; // UI Image
     [SerializeField] private float fadeDuration = 1.5f;
 
-    private static SceneTransitionManager instance;
+    public static SceneTransitionManager instance { get; private set; }
 
     public static event Action OnFadeInComplete; // 페이드 인 완료 이벤트
+
 
     private void Awake()
     {

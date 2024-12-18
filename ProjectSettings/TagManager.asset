@@ -47,3 +47,6 @@ TagManager:
   - name: Pet_Front
     uniqueID: 3513740815
     locked: 0
+  - name: QuitLayer
+    uniqueID: 3397044145
+    locked: 0

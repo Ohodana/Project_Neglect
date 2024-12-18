@@ -15,14 +15,12 @@ public class TouchToContinue : MonoBehaviour
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 Continue();
-                Debug.Log("Skip1");
             }
 
             // 에디터 테스트를 위한 마우스 클릭 처리 (선택 사항)
             if (Application.isEditor && Input.GetMouseButtonDown(0))
             {
                 Continue();
-                Debug.Log("Skip2");
             }
         }
     }

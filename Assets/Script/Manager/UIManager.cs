@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -23,12 +25,46 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeUI();
-
-        GameManager.Instance.DataManager.OnCurrencyChanged += UpdateCurrencyUI;
+        //InitializeUI();
     }
 
-    private void InitializeUI()
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 씬 안에 배치된 MainUIAllocation 오브젝트 찾기
+        MainUIAllocation allocation = FindObjectOfType<MainUIAllocation>();
+        if (allocation != null)
+        {
+            // allocation에서 UI 요소를 가져와 UIManager 내부 로직에 맞게 세팅
+            SetupUIFromAllocation(allocation);
+        }
+    }
+
+
+    private void SetupUIFromAllocation(MainUIAllocation allocation)
+    {
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Main_001")
+        {
+            this.bottomButtonUI = allocation.BottomButtonUI;
+            this.bottomButton = allocation.BottomButton;
+            this.CurrencyTexts = allocation.CurrencyTexts;
+            GameManager.Instance.DataManager.OnCurrencyChanged += UpdateCurrencyUI;
+            InitializeMainUI();
+        }
+    }
+
+
+    private void InitializeMainUI()
     {
         ChangeMainUI(2);
 
@@ -41,8 +77,8 @@ public class UIManager : MonoBehaviour
         UpdateCurrencyUI();
 
         testButton.onClick.AddListener(() => testActs());
-
     }
+
 
     private void ChangeMainUI(int index)
     {
@@ -69,11 +105,13 @@ public class UIManager : MonoBehaviour
         CurrencyTexts[2].text = currency.Gold.ToString();
     }
 
+
     private void testActs()
     {
         // GameManager.Instance.DataManager.CurrentCurrency.SpendActs(1);
         // UpdateCurrencyUI();
-        GameManager.Instance.DataManager.SpendActs(1);
+        //GameManager.Instance.DataManager.SpendActs(1);
+        SceneTransitionManager.ChangeScene("test");
     }
 
 }

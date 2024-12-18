@@ -5,6 +5,7 @@ public class DataManager
 {
     private SaveManager saveManager;
     private const string CurrencyFileName = "GameCurrency";
+    private const string LastSaveTimeKey = "LastSaveTime";
 
     public GameCurrency CurrentCurrency { get; private set; }
 
@@ -33,8 +34,29 @@ public class DataManager
     public void SaveCurrency()
     {
         saveManager.SaveData(CurrencyFileName, CurrentCurrency);
-        Debug.Log("Currency saved.");
+
     }
+
+    public void SaveLastSaveTime(DateTime time)
+    {
+        string timeString = time.ToString("o");
+        saveManager.SaveData(LastSaveTimeKey, timeString);
+    }
+
+    public DateTime LoadLastSaveTime()
+    {
+        string timeString = saveManager.LoadData<string>(LastSaveTimeKey);
+        if (!string.IsNullOrEmpty(timeString))
+        {
+            if (DateTime.TryParse(timeString, null, System.Globalization.DateTimeStyles.RoundtripKind, out DateTime saveTime))
+            {
+                return saveTime;
+            }
+        }
+
+        return DateTime.MinValue;
+    }
+
 
     public void AddGold(int amount)
     {
