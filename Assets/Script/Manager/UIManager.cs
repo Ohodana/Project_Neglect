@@ -23,6 +23,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Button testButton;
 
+    private MainUIAllocation allocation;
+
+    [Header("전투 관련 UI")]
+    // 0: EXP, 1: HP, 2:HPRate, 3: Attack, 4: Defense
+    [SerializeField] private TextMeshProUGUI[] battleTexts;
+    [SerializeField] private Button[] battleButtons;
+    // 0: EXP, 1: HP, 3:ProgressBar
+    [SerializeField] private Image[] battleSliders;
+
     private void Start()
     {
         //InitializeUI();
@@ -30,18 +39,19 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        GameManager.Instance.DataManager.OnCurrencyChanged -= UpdateCurrencyUI;
         // 씬 안에 배치된 MainUIAllocation 오브젝트 찾기
-        MainUIAllocation allocation = FindObjectOfType<MainUIAllocation>();
+        allocation = FindObjectOfType<MainUIAllocation>();
         if (allocation != null)
         {
             // allocation에서 UI 요소를 가져와 UIManager 내부 로직에 맞게 세팅
@@ -61,6 +71,15 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.DataManager.OnCurrencyChanged += UpdateCurrencyUI;
             InitializeMainUI();
         }
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Battle_001")
+        {
+            // 배틀 씬에서 필요한 UI 요소를 가져와서 세팅
+            this.battleTexts = allocation.BattleTexts;
+            this.battleButtons = allocation.BattleButtons;
+            this.battleSliders = allocation.BattleSliders;
+
+        }
     }
 
 
@@ -77,6 +96,10 @@ public class UIManager : MonoBehaviour
         UpdateCurrencyUI();
 
         testButton.onClick.AddListener(() => testActs());
+    }
+    private void InitializeUI()
+    {
+        // test
     }
 
 
@@ -105,13 +128,46 @@ public class UIManager : MonoBehaviour
         CurrencyTexts[2].text = currency.Gold.ToString();
     }
 
+    public void SetBattleUIText(int index, string newText)
+    {
+        if (index < 0 || index >= battleTexts.Length)
+        {
+            Debug.LogWarning($"잘못된 텍스트 인덱스: {index}");
+            return;
+        }
+
+        battleTexts[index].text = newText;
+    }
+
+    public void SetBattleSliderValue(int index, float newValue)
+    {
+        if (index < 0 || index >= battleSliders.Length)
+        {
+            Debug.LogWarning($"잘못된 슬라이더 인덱스: {index}");
+            return;
+        }
+
+        battleSliders[index].fillAmount = newValue;
+    }
+
+    public void SetBattleCoolDownUI(int index, float maxTime, float currentTime)
+    {
+        if (index < 0 || index >= allocation.BattleCooldowns.Length)
+        {
+            Debug.LogWarning($"잘못된 쿨다운 UI 인덱스: {index}");
+            return;
+        }
+        allocation.BattleCooldowns[index].fillAmount = currentTime / maxTime;
+    }
+
+
 
     private void testActs()
     {
         // GameManager.Instance.DataManager.CurrentCurrency.SpendActs(1);
         // UpdateCurrencyUI();
         //GameManager.Instance.DataManager.SpendActs(1);
-        SceneTransitionManager.ChangeScene("test");
+        SceneTransitionManager.ChangeScene("Battle_001");
     }
 
 }

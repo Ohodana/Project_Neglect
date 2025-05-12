@@ -15,16 +15,31 @@ public class ParallaxBackground_Type01 : MonoBehaviour
     [SerializeField]
     private Vector3 moveDirction;// 이동 방향
 
-    void Start(){
-        scrollAmount = scrollAmount *2;
+    private float originalMoveSpeed;
+
+    void Start()
+    {
+        scrollAmount = scrollAmount * 2;
+        originalMoveSpeed = moveSpeed; // Save the original move speed
     }
 
     void Update()
     {
         transform.position += moveDirction * moveSpeed * Time.deltaTime;
 
-        if (transform.position.x <= scrollEed){
+        if (transform.position.x <= scrollEed)
+        {
             transform.position = target.position - moveDirction * scrollAmount;
         }
+    }
+
+    public void StopMovement()
+    {
+        moveSpeed = 0f;
+    }
+
+    public void ResumeMovement()
+    {
+        moveSpeed = originalMoveSpeed;
     }
 }

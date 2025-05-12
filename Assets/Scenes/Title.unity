@@ -1689,7 +1689,7 @@ MonoBehaviour:
   mixerGroup: {fileID: 24300002, guid: 530dff6670bb05941aa6239ca771e6bd, type: 2}
   sounds:
   - name: Main_BGM
-    clip: {fileID: 8300000, guid: 95a8271205814d74995f143dd023e0d6, type: 3}
+    clip: {fileID: 8300000, guid: 3591ff3381b557a44b0d37a8ebd22beb, type: 3}
     volume: 0.5
     pitch: 1
     loop: 1

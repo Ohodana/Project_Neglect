@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     [SerializeField]
     private UIManager uiManager;
+    public UIManager UIManager => uiManager;
 
     private void Awake()
     {

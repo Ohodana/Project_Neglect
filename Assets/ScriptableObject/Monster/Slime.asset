@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb35a9a65cbc1f418b4058fc0375533, type: 3}
+  m_Name: Slime
+  m_EditorClassIdentifier: 
+  monsterName: Slime
+  monsterPrefab: {fileID: 4688405461405055115, guid: 3e29cfe9fbd40824992f3d8a89603984, type: 3}
+  description: "\uD3C9\uBC94\uD55C \uC2AC\uB77C\uC784"
+  maxHP: 100
+  giveEXP: 10
+  defaultAttackCooldown: 10
+  defaultAttack: 10
+  defaultDefense: 10
+  icon: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: bd5ad366fbf7e3a4a8e939eefa98e7ba, type: 2}
+  voiceClip: {fileID: 0}
+  isPlaying: 0
+  skills: []

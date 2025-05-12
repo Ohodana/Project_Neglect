@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a674a5102bf9a4ab7b0932d8f6f1dd, type: 3}
+  m_Name: Yui
+  m_EditorClassIdentifier: 
+  characterName: Yui
+  characterPrefab: {fileID: 8682003097561254776, guid: 7c1ee1d1c970587439b3fa5dc62a64c1, type: 3}
+  description: "\uAE30\uBCF8 \uC720\uC774"
+  maxHP: 100
+  maxEXP: 100
+  level: 1
+  defaultAttackCooldown: 5
+  defaultAttack: 5
+  defaultDefense: 4
+  icon: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: b5363b1364ccea54580771bd69d54142, type: 2}
+  voiceClip: {fileID: 0}
+  isPlaying: 0
+  skills:
+  - {fileID: 11400000, guid: 0aa4ab38ac041874196b716ce4dd5515, type: 2}
+  - {fileID: 11400000, guid: 3bbe6d0d62301ce4096e57f83ca33be8, type: 2}
+  - {fileID: 11400000, guid: 739a02f9ded03d44bb7cf830c23c258a, type: 2}
+  - {fileID: 11400000, guid: cf2bed6186d7b4e439456dcd53bad264, type: 2}
